@@ -23,7 +23,8 @@ RUN set -x \
 RUN apt-get update && apt-get install -y \
     sudo \
     wget \
-    apt-transport-https
+    apt-transport-https \
+    libxml2
 
 # Install iRODS iCommands v.4.2.0-preview
 RUN wget -qO - https://unstable.irods.org/irods-unstable-signing-key.asc | sudo apt-key add - \
