@@ -28,10 +28,10 @@ RUN apt-get update && apt-get install -y \
     apt-transport-https \
     libxml2
 
-# Install iRODS iCommands v.4.2.0-preview
-RUN wget -qO - https://unstable.irods.org/irods-unstable-signing-key.asc | sudo apt-key add - \
-    && echo "deb [arch=amd64] https://unstable.irods.org/apt/ trusty main" | \
-    sudo tee /etc/apt/sources.list.d/renci-irods-unstable.list \
+# Install iRODS iCommands v.4.2.0
+RUN wget -qO - https://packages.irods.org/irods-signing-key.asc | sudo apt-key add - \
+    && echo "deb [arch=amd64] https://packages.irods.org/apt/ trusty main" | \
+    sudo tee /etc/apt/sources.list.d/renci-irods.list \
     && sudo apt-get update && sudo apt-get install -y \
     irods-icommands
 
