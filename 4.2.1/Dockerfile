@@ -46,8 +46,8 @@ RUN apt-get update && apt-get install -y \
     irods-externals-jansson2.7-0 \
     irods-externals-libarchive3.1.2-0 \
     irods-externals-zeromq4-14.1.3-0 \
-    irods-icommands=4.2.0 \
-    irods-runtime=4.2.0
+    irods-icommands=4.2.1 \
+    irods-runtime=4.2.1
 
 # default iRODS env
 ENV IRODS_PORT=1247

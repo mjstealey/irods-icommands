@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Michael J. Stealey <michael.j.stealey@gmail.com>
 
 RUN set -ex; \
@@ -30,14 +30,16 @@ RUN set -x \
     && apt-get purge -y --auto-remove ca-certificates wget
 
 # install iRODS v4.2.2
-RUN apt-get update && apt-get install -y \
+RUN echo "deb http://ftp.debian.org/debian jessie-backports main" \
+    > /etc/apt/sources.list.d/jessie-backports.list \
+    && apt-get update && apt-get install -y \
     wget \
     libxml2 \
     apt-transport-https \
     sudo \
     jq \
     && wget -qO - https://packages.irods.org/irods-signing-key.asc | apt-key add - \
-    && echo "deb [arch=amd64] https://packages.irods.org/apt/ trusty main" \
+    && echo "deb [arch=amd64] https://packages.irods.org/apt/ xenial main" \
     > /etc/apt/sources.list.d/renci-irods.list \
     && apt-get update && apt-get install -y \
     irods-externals-avro1.7.7-0 \
@@ -46,8 +48,8 @@ RUN apt-get update && apt-get install -y \
     irods-externals-jansson2.7-0 \
     irods-externals-libarchive3.1.2-0 \
     irods-externals-zeromq4-14.1.3-0 \
-    irods-icommands=4.2.0 \
-    irods-runtime=4.2.0
+    irods-icommands=4.2.2 \
+    irods-runtime=4.2.2
 
 # default iRODS env
 ENV IRODS_PORT=1247
