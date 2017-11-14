@@ -2,9 +2,13 @@
 
 iRODS iCommands in Docker
 
-- v4.2.2 - Debian:stretch based (16.04 Xenial iRODS packages)
-- v4.2.1 - Debian:jessie based (14.04 Trusty iRODS packages)
-- v4.2.0 - Debian:jessie based (14.04 Trusty iRODS packages)
+- 4.2.2 - Debian:stretch based (16.04 Xenial iRODS packages)
+- 4.2.1 - Debian:jessie based (14.04 Trusty iRODS packages)
+- 4.2.0 - Debian:jessie based (14.04 Trusty iRODS packages)
+- 4.1.11 - Debian:jessie based (14.04 Trusty iRODS ftp deb files)
+- 4.1.10 - Debian:jessie based (14.04 Trusty iRODS ftp deb files)
+- 4.1.9 - Debian:jessie based (14.04 Trusty iRODS ftp deb files)
+- 4.1.8 - Debian:jessie based (14.04 Trusty iRODS ftp deb files)
 
 **Note**: iRODS icommands require a pre-existing iRODS server to connect to as the icommands image does not provide any iRODS services of it's own. Most examples provided herein additionally make use of the [irods-provider-postgres](https://github.com/mjstealey/irods-provider-postgres) docker image running in a docker network named `irods_nw`.
 
@@ -24,6 +28,10 @@ $ docker run -d --name=provider \
 - 4.2.2, latest ([4.2.2/Dockerfile](https://github.com/mjstealey/irods-icommands/blob/master/4.2.2/Dockerfile))
 - 4.2.1 ([4.2.1/Dockerfile](https://github.com/mjstealey/irods-icommands/blob/master/4.2.1/Dockerfile))
 - 4.2.0 ([4.2.0/Dockerfile](https://github.com/mjstealey/irods-icommands/blob/master/4.2.0/Dockerfile))
+- 4.1.11 ([4.1.11/Dockerfile](https://github.com/mjstealey/irods-icommands/blob/master/4.1.11/Dockerfile))
+- 4.1.10 ([4.1.10/Dockerfile](https://github.com/mjstealey/irods-icommands/blob/master/4.1.10/Dockerfile))
+- 4.1.9 ([4.1.9/Dockerfile](https://github.com/mjstealey/irods-icommands/blob/master/4.1.9/Dockerfile))
+- 4.1.8 ([4.1.8/Dockerfile](https://github.com/mjstealey/irods-icommands/blob/master/4.1.8/Dockerfile))
 
 ### Pull image from dockerhub
 
@@ -180,6 +188,10 @@ uid=12345(irods) gid=54321(irods) groups=54321(irods)
 **iput**
 
 The icommands container has an internal volume named `/local` as its starting point. We want to volume mount the files from the host to be in the scope of the containers `/local` directory.
+
+SE Linux users should note that volume mounts may fail, and may require a `:z` or `:Z` at the end of their volume defintion.
+
+- `-v $(pwd):/local:z`
 
 Example:
 
