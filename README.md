@@ -187,11 +187,11 @@ uid=12345(irods) gid=54321(irods) groups=54321(irods)
 
 **iput**
 
-The icommands container has an internal volume named `/local` as its starting point. We want to volume mount the files from the host to be in the scope of the containers `/local` directory.
+The icommands container has an internal volume named `/data` as its starting point. We want to volume mount the files from the host to be in the scope of the containers `/data` directory.
 
 SE Linux users should note that volume mounts may fail, and may require a `:z` or `:Z` at the end of their volume defintion.
 
-- `-v $(pwd):/local:z`
+- `-v $(pwd):/data:z`
 
 Example:
 
@@ -205,12 +205,12 @@ $ dd if=/dev/zero of=test-file.dat  bs=1M  count=10
 10485760 bytes (10 MB) copied, 0.0104086 s, 1.0 GB/s
 
 $ docker run --rm \
-	-v $(pwd):/local \
+	-v $(pwd):/data \
 	--network=irods_nw \
 	mjstealey/irods-icommands:latest iput test-file.dat
 
 $ docker run --rm \
-        -v $(pwd):/local \
+        -v $(pwd):/data \
         --network=irods_nw \
         mjstealey/irods-icommands:latest ils -Lr
 /tempZone/home/rods:
@@ -227,7 +227,7 @@ Retrieve the `test-file.dat` file using `iget` into a new host directory name `o
 $ mkdir output
 
 $ docker run --rm \
-	-v $(pwd)/output:/local \
+	-v $(pwd)/output:/data \
 	--network=irods_nw \
 	mjstealey/irods-icommands:latest iget test-file.dat
 
